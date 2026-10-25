@@ -1,0 +1,51 @@
+<!-- ===================== PROFILE (logged in) ===================== -->
+<div>
+  <h1 class="m-0" style="font-size:clamp(2rem,3.4vw,2.7rem)">My profile</h1>
+  <p class="m-0">Keep your contact details up to date so we can reach you.</p>
+</div>
+
+<div class="row g-4">
+  <div class="col-xl-7">
+    <form id="profileForm" class="soft-card shadow-butter row g-3" novalidate>
+      <div class="col-12"><h2 class="m-0 fs-3">Personal details</h2></div>
+      <div class="col-sm-6">
+        <label for="pfFirst" class="form-label">First name *</label>
+        <input id="pfFirst" name="first_name" class="form-control" required>
+        <div class="invalid-feedback">Please enter your first name.</div>
+      </div>
+      <div class="col-sm-6">
+        <label for="pfLast" class="form-label">Last name *</label>
+        <input id="pfLast" name="last_name" class="form-control" required>
+        <div class="invalid-feedback">Please enter your last name.</div>
+      </div>
+      <div class="col-sm-6">
+        <label for="pfEmail" class="form-label">Email</label>
+        <input id="pfEmail" name="email" type="email" class="form-control" readonly aria-describedby="pfEmailHelp">
+        <div id="pfEmailHelp" class="form-text">Contact us to change your login email.</div>
+      </div>
+      <div class="col-sm-6">
+        <label for="pfPhone" class="form-label">Phone</label>
+        <input id="pfPhone" name="phone" type="tel" class="form-control" placeholder="+387 6x xxx xxx">
+      </div>
+      <div class="col-12"><button type="submit" class="btn btn-sunny">Save changes</button></div>
+    </form>
+  </div>
+
+  <div class="col-xl-5">
+    <form id="passwordForm" class="soft-card shadow-lav row g-3" novalidate>
+      <div class="col-12"><h2 class="m-0 fs-3">Change password</h2></div>
+      <div class="col-12">
+        <label for="pwCurrent" class="form-label">Current password *</label>
+        <input id="pwCurrent" name="current_password" type="password" class="form-control" autocomplete="current-password" required>
+        <div class="invalid-feedback">Please enter your current password.</div>
+      </div>
+      <div class="col-12">
+        <label for="pwNew" class="form-label">New password *</label>
+        <input id="pwNew" name="new_password" type="password" class="form-control" autocomplete="new-password" required pattern="(?=.*[A-Za-z])(?=.*\d).{8,}">
+        <div class="invalid-feedback">Use 8+ characters with at least one letter and one number.</div>
+      </div>
+      <div class="col-12"><div class="alert alert-danger rounded-4 d-none mb-0" id="pwError" role="alert"></div></div>
+      <div class="col-12"><button type="submit" class="btn btn-purple">Update password</button></div>
+    </form>
+  </div>
+</div>

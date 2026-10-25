@@ -1,0 +1,53 @@
+<!-- ===================== DASHBOARD (logged in) ===================== -->
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+  <div>
+    <h1 class="m-0" style="font-size:clamp(2rem,3.4vw,2.7rem)"><span id="greeting">Hello</span>, <span id="dashName">friend</span> <span style="color:var(--coral)">✦</span></h1>
+    <p class="m-0 fs-6">Here's what's happening in your little galaxy today.</p>
+  </div>
+  <a href="#/enrollments?new=1" class="btn btn-sunny parent-only"><i class="bi bi-plus-lg me-1"></i>New enrollment</a>
+</div>
+
+<!-- stats -->
+<div class="row g-3">
+  <div class="col-sm-6 col-xl-3"><div class="stat bg-butter"><div class="fw-bold">Profile status</div><div class="value" id="statProfile">—</div></div></div>
+  <div class="col-sm-6 col-xl-3"><div class="stat bg-sky"><div class="fw-bold">Children registered</div><div class="value" id="statChildren">—</div></div></div>
+  <div class="col-sm-6 col-xl-3"><div class="stat bg-lavender-mid"><div class="fw-bold">Pending applications</div><div class="value" id="statPending">—</div></div></div>
+  <div class="col-sm-6 col-xl-3"><div class="stat bg-mint"><div class="fw-bold">Events this week</div><div class="value" id="statEvents">—</div></div></div>
+</div>
+
+<!-- children -->
+<section>
+  <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+    <h2 class="m-0 fs-2">My children</h2>
+    <a href="#/children" class="fw-bold">Manage children →</a>
+  </div>
+  <div class="row g-3" id="dashChildren"></div>
+</section>
+
+<div class="row g-4">
+  <!-- enrollments -->
+  <div class="col-xl-7">
+    <section class="soft-card shadow-butter h-100">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="m-0 fs-3">Enrollment applications</h2>
+        <a href="#/enrollments" class="fw-bold small">See all →</a>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-soft">
+          <thead><tr><th>Child</th><th>Program</th><th>Start</th><th>Status</th></tr></thead>
+          <tbody id="dashEnrollments"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+  <!-- events -->
+  <div class="col-xl-5">
+    <section class="bg-sky h-100 p-4" style="border-radius:32px 24px 32px 24px">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="m-0 fs-3">Upcoming adventures</h2>
+        <a href="#/events" class="fw-bold small">All →</a>
+      </div>
+      <div class="d-flex flex-column gap-3" id="dashEvents"></div>
+    </section>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+# ---------- Secrets / configuration ----------
+# The real config holds DB password, JWT secret and OpenWeatherMap key.
+# Commit only config.example.php (the template). Real file: config.local.php
+backend/config/config.local.php
+.env
+.env.*
+!.env.example
+
+# ---------- Logs ----------
+backend/logs/*
+!backend/logs/.gitkeep
+*.log
+
+# ---------- Dependencies ----------
+backend/vendor/
+vendor/
+node_modules/
+composer.phar
+
+# ---------- OS / editor files ----------
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp

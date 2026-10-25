@@ -1,0 +1,27 @@
+<!-- ===================== PROGRAMS / CLASSES (public) ===================== -->
+<section class="hero pb-5">
+  <img src="assets/images/cloud.svg" class="deco" style="left:4%;top:20px;width:150px" alt="">
+  <img src="assets/images/cloud.svg" class="deco" style="right:6%;top:40px;width:120px" alt="">
+  <span class="deco bubble b-yellow" style="right:20%;top:20px;--s:40px"></span>
+  <span class="deco bubble b-pink" style="left:20%;bottom:20px;--s:30px"></span>
+  <div class="container text-center d-flex flex-column align-items-center gap-3">
+    <span class="pill-badge">Programs &amp; classes</span>
+    <h1 class="hero-title m-0" style="font-size:clamp(2.5rem,5vw,4rem)">A little galaxy for every age</h1>
+    <p class="fs-5 m-0" style="max-width:620px">Every group has its own teacher, rhythm and adventures. Pick an age to see which class fits your child.</p>
+    <div class="d-flex flex-wrap justify-content-center gap-2 mt-2" role="group" aria-label="Filter by age" id="ageFilter">
+      <button class="btn btn-purple" data-age="all" aria-pressed="true">All ages</button>
+      <button class="btn btn-white" data-age="1" aria-pressed="false">1–3 years</button>
+      <button class="btn btn-white" data-age="4" aria-pressed="false">3–5 years</button>
+      <button class="btn btn-white" data-age="6" aria-pressed="false">5–6 years</button>
+    </div>
+  </div>
+</section>
+<div class="cloud-edge" style="--from: var(--sky-soft); --to: var(--cream);"></div>
+
+<section class="section pt-4">
+  <div class="container">
+    <div class="row g-4" id="programList">
+      <div class="col-12 text-center py-5"><div class="spinner-border text-purple" role="status"><span class="visually-hidden">Loading…</span></div></div>
+    </div>
+  </div>
+</section>

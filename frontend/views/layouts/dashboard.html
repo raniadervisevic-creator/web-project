@@ -1,0 +1,26 @@
+<!-- Layout shared by every logged-in page. The router puts the page where <!--VIEW--> is. -->
+<div class="dash">
+  <aside class="dash-side" aria-label="Account menu">
+    <div class="d-flex align-items-center gap-3 px-2">
+      <span class="child-avatar bg-sunny" style="width:52px;height:52px;font-size:1.4rem" id="sideAvatar">?</span>
+      <div>
+        <div class="fw-bold" id="sideName">…</div>
+        <div class="small text-ink-soft" id="sideRole">…</div>
+      </div>
+    </div>
+    <nav class="d-flex flex-column gap-1">
+      <a class="side-link" href="#/dashboard" data-route="dashboard"><i class="bi bi-house-heart"></i>Overview</a>
+      <a class="side-link parent-only" href="#/children" data-route="children"><i class="bi bi-people"></i>My children</a>
+      <a class="side-link parent-only" href="#/enrollments" data-route="enrollments"><i class="bi bi-journal-check"></i>Enrollments</a>
+      <a class="side-link" href="#/events" data-route="events"><i class="bi bi-calendar-heart"></i>Activities &amp; events</a>
+      <a class="side-link" href="#/profile" data-route="profile"><i class="bi bi-person-circle"></i>My profile</a>
+      <a class="side-link admin-only d-none" href="#/admin" data-route="admin"><i class="bi bi-gear"></i>Admin panel</a>
+    </nav>
+    <div class="mt-auto" id="sideWeather"></div>
+    <button type="button" class="side-link border-0 bg-white w-100" id="sideLogout"><i class="bi bi-box-arrow-right"></i>Log out</button>
+  </aside>
+
+  <div class="dash-main">
+    <!--VIEW-->
+  </div>
+</div>
