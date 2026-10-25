@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Magični Svijet — Kindergarten Web Application
 
 ## Project Description
@@ -47,3 +48,6 @@ The draft ERD diagram is stored in the project repository at `docs/erd.png`.
 ## External API Integration (Planned)
 - **Feature:** OpenWeatherMap API integration.
 - **Usage:** Displays real-time local weather conditions to show optimal outdoor play conditions for kindergarten activities.
+=======
+Hello Everyone
+>>>>>>> origin/main
