@@ -1,0 +1,58 @@
+<!-- ===================== ENROLLMENTS (parent) ===================== -->
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+  <div>
+    <h1 class="m-0" style="font-size:clamp(2rem,3.4vw,2.7rem)">Enrollment applications</h1>
+    <p class="m-0">Apply for a class and follow the status: <span class="status status-pending">pending</span> → <span class="status status-approved">approved</span> → <span class="status status-active">active</span></p>
+  </div>
+  <button class="btn btn-sunny" id="newEnrollmentBtn"><i class="bi bi-plus-lg me-1"></i>New application</button>
+</div>
+
+<div class="soft-card shadow-butter">
+  <div class="table-responsive">
+    <table class="table table-soft">
+      <thead><tr><th>Child</th><th>Program</th><th>Start date</th><th>Submitted</th><th>Status</th><th class="text-end">Actions</th></tr></thead>
+      <tbody id="enrollmentRows"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- New application modal -->
+<div class="modal fade" id="enrollModal" tabindex="-1" aria-labelledby="enrollModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-2">
+      <form id="enrollForm" novalidate>
+        <div class="modal-header">
+          <h2 class="modal-title" id="enrollModalTitle">New application</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body d-flex flex-column gap-3">
+          <div class="alert alert-danger rounded-4 d-none mb-0" id="enrollError" role="alert"></div>
+          <div>
+            <label for="enChild" class="form-label">Child *</label>
+            <select id="enChild" name="child_id" class="form-select" required></select>
+            <div class="invalid-feedback">Choose a child. <a href="#/children">Add one first</a> if the list is empty.</div>
+          </div>
+          <div>
+            <label for="enProgram" class="form-label">Program *</label>
+            <select id="enProgram" name="program_id" class="form-select" required></select>
+            <div class="form-text" id="enProgramHint"></div>
+            <div class="invalid-feedback">Choose a program.</div>
+          </div>
+          <div>
+            <label for="enStart" class="form-label">Preferred start date *</label>
+            <input type="date" id="enStart" name="start_date" class="form-control" required>
+            <div class="invalid-feedback">Pick a start date in the future.</div>
+          </div>
+          <div>
+            <label for="enNotes" class="form-label">Notes for the teachers</label>
+            <textarea id="enNotes" name="notes" class="form-control" rows="3" placeholder="Allergies, nap habits, favourite toy…"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-soft" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-sunny" id="enrollSubmit">Send application</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

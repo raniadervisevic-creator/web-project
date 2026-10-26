@@ -1,0 +1,59 @@
+<!-- ===================== LOGIN ===================== -->
+<section class="auth-wrap">
+  <img src="assets/images/cloud.svg" class="deco" style="left:3%;top:30px;width:170px" alt="">
+  <img src="assets/images/cloud.svg" class="deco" style="right:4%;bottom:40px;width:150px" alt="">
+  <span class="deco bubble b-yellow" style="right:10%;top:12%;--s:50px"></span>
+  <span class="deco bubble b-blue" style="left:8%;bottom:16%;--s:36px"></span>
+  <span class="deco bubble b-pink" style="left:46%;top:4%;--s:24px"></span>
+  <div class="container">
+    <div class="auth-card row g-0 mx-auto" style="max-width:1100px">
+      <div class="col-lg-6">
+        <div class="auth-side">
+          <a href="#/home"><img src="assets/images/logo.png" alt="Magični Svijet logo — back to the homepage"></a>
+          <div>
+            <h1 class="m-0" style="font-size:2.4rem">Welcome back to the magic</h1>
+            <p class="fs-6 mt-2 mb-0">Follow your child's day, enrollments and classroom adventures — all in one cozy place.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="auth-form d-flex flex-column gap-4">
+          <div class="tab-switch" role="tablist">
+            <a href="#/login" class="active" role="tab" aria-selected="true">Log in</a>
+            <a href="#/register" role="tab" aria-selected="false">Register</a>
+          </div>
+
+          <div class="alert rounded-4 d-none mb-0" id="loginNotice" role="alert" style="background:var(--peach-soft);border:0;font-weight:700">
+            <i class="bi bi-moon-stars-fill me-2" style="color:#F2B63C"></i><span></span>
+          </div>
+
+          <form id="loginForm" class="d-flex flex-column gap-3" novalidate>
+            <h2 class="m-0" style="font-size:2rem">Log in to your account</h2>
+            <div>
+              <label for="loginEmail" class="form-label">Email</label>
+              <input type="email" id="loginEmail" name="email" class="form-control" placeholder="ana@example.com" autocomplete="email" required>
+              <div class="invalid-feedback">Please enter your email address.</div>
+            </div>
+            <div>
+              <label for="loginPassword" class="form-label">Password</label>
+              <div class="position-relative">
+                <input type="password" id="loginPassword" name="password" class="form-control pe-5" autocomplete="current-password" required>
+                <button type="button" class="btn btn-link position-absolute top-50 end-0 translate-middle-y text-decoration-none" data-toggle-pw="loginPassword" aria-label="Show password"><i class="bi bi-eye"></i></button>
+                <div class="invalid-feedback">Please enter your password.</div>
+              </div>
+            </div>
+            <div class="alert alert-danger rounded-4 d-none mb-0" id="loginError" role="alert"></div>
+            <button type="submit" class="btn btn-sunny btn-lg">Log in</button>
+            <p class="text-center m-0">New here? <a href="#/register" class="fw-bold text-purple-dark">Create a parent account</a></p>
+          </form>
+
+          <div class="small p-3 rounded-4 bg-sky" id="demoAccounts">
+            <strong>Demo accounts (mock API):</strong><br>
+            Parent — parent@magicnisvijet.ba / Parent123!<br>
+            Admin — admin@magicnisvijet.ba / Admin123!
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

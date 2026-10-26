@@ -1,0 +1,73 @@
+<!-- ===================== REGISTER ===================== -->
+<section class="auth-wrap">
+  <img src="assets/images/cloud.svg" class="deco" style="left:3%;top:30px;width:170px" alt="">
+  <img src="assets/images/cloud.svg" class="deco" style="right:4%;bottom:40px;width:150px" alt="">
+  <span class="deco bubble b-mint" style="right:10%;top:12%;--s:50px"></span>
+  <span class="deco bubble b-pink" style="left:8%;bottom:16%;--s:36px"></span>
+  <div class="container">
+    <div class="auth-card row g-0 mx-auto" style="max-width:1100px">
+      <div class="col-lg-6">
+        <div class="auth-side">
+          <a href="#/home"><img src="assets/images/logo.png" alt="Magični Svijet logo — back to the homepage"></a>
+          <div>
+            <h1 class="m-0" style="font-size:2.4rem">Join our magical world</h1>
+            <p class="fs-6 mt-2 mb-0">Create a parent account to add your children, apply for classes and follow every adventure.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="auth-form d-flex flex-column gap-4">
+          <div class="tab-switch" role="tablist">
+            <a href="#/login" role="tab" aria-selected="false">Log in</a>
+            <a href="#/register" class="active" role="tab" aria-selected="true">Register</a>
+          </div>
+
+          <form id="registerForm" class="row g-3" novalidate>
+            <div class="col-12"><h2 class="m-0" style="font-size:2rem">Create a parent account</h2></div>
+            <div class="col-sm-6">
+              <label for="regFirst" class="form-label">First name *</label>
+              <input id="regFirst" name="first_name" class="form-control" autocomplete="given-name" required>
+              <div class="invalid-feedback">Please enter your first name.</div>
+            </div>
+            <div class="col-sm-6">
+              <label for="regLast" class="form-label">Last name *</label>
+              <input id="regLast" name="last_name" class="form-control" autocomplete="family-name" required>
+              <div class="invalid-feedback">Please enter your last name.</div>
+            </div>
+            <div class="col-12">
+              <label for="regEmail" class="form-label">Email *</label>
+              <input id="regEmail" name="email" type="email" class="form-control" autocomplete="email" required>
+              <div class="invalid-feedback">Please enter a valid email address.</div>
+            </div>
+            <div class="col-12">
+              <label for="regPhone" class="form-label">Phone</label>
+              <input id="regPhone" name="phone" type="tel" class="form-control" autocomplete="tel" placeholder="+387 6x xxx xxx">
+            </div>
+            <div class="col-sm-6">
+              <label for="regPassword" class="form-label">Password *</label>
+              <input id="regPassword" name="password" type="password" class="form-control" autocomplete="new-password" required minlength="8"
+                     pattern="(?=.*[A-Za-z])(?=.*\d).{8,}">
+              <div class="form-text">At least 8 characters, with a letter and a number.</div>
+              <div class="invalid-feedback">Use 8+ characters with at least one letter and one number.</div>
+            </div>
+            <div class="col-sm-6">
+              <label for="regPassword2" class="form-label">Repeat password *</label>
+              <input id="regPassword2" name="password_confirm" type="password" class="form-control" autocomplete="new-password" required>
+              <div class="invalid-feedback">Passwords must match.</div>
+            </div>
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="regTerms" name="terms" required>
+                <label class="form-check-label fw-semibold" for="regTerms">I agree that Magični Svijet stores my data to manage enrollments.</label>
+                <div class="invalid-feedback">Please accept to continue.</div>
+              </div>
+            </div>
+            <div class="col-12"><div class="alert alert-danger rounded-4 d-none mb-0" id="registerError" role="alert"></div></div>
+            <div class="col-12"><button type="submit" class="btn btn-mint btn-lg w-100">Create account ✦</button></div>
+            <div class="col-12 text-center">Already have an account? <a href="#/login" class="fw-bold text-purple-dark">Log in</a></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

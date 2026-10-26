@@ -1,0 +1,58 @@
+<!-- ===================== CONTACT (public) ===================== -->
+<section class="section">
+  <img src="assets/images/cloud.svg" class="deco" style="left:3%;top:20px;width:140px;opacity:.9" alt="">
+  <span class="deco bubble b-pink" style="right:5%;top:40px;--s:46px"></span>
+  <span class="deco bubble b-blue" style="left:6%;bottom:40px;--s:36px"></span>
+  <div class="container">
+    <div class="bg-peach rounded-xxl overflow-hidden row g-0">
+      <div class="col-lg-7 p-4 p-md-5 d-flex flex-column gap-3">
+        <span class="eyebrow" style="color:#9A4700">Come say hello</span>
+        <h1 class="section-title">Make an appointment</h1>
+        <p class="fs-5 m-0">Come visit, meet our teachers and see the classrooms. Send us a little letter and we'll get back to you.</p>
+
+        <form id="contactForm" class="row g-3 form-plain" novalidate>
+          <div class="col-md-6">
+            <label for="cName" class="form-label">Parent name *</label>
+            <input id="cName" name="name" class="form-control" required minlength="2" placeholder="Ana Anić">
+            <div class="invalid-feedback">Please tell us your name.</div>
+          </div>
+          <div class="col-md-6">
+            <label for="cEmail" class="form-label">Email *</label>
+            <input id="cEmail" name="email" type="email" class="form-control" required placeholder="ana@example.com">
+            <div class="invalid-feedback">Please enter a valid email.</div>
+          </div>
+          <div class="col-md-6">
+            <label for="cChild" class="form-label">Child's name</label>
+            <input id="cChild" name="child_name" class="form-control">
+          </div>
+          <div class="col-md-6">
+            <label for="cProgram" class="form-label">Interested in</label>
+            <select id="cProgram" name="program" class="form-select">
+              <option value="">Not sure yet</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <label for="cMsg" class="form-label">Message *</label>
+            <textarea id="cMsg" name="message" class="form-control" rows="4" required minlength="10" placeholder="Tell us about your little one…"></textarea>
+            <div class="invalid-feedback">Please write a short message (at least 10 characters).</div>
+          </div>
+          <div class="col-12"><button type="submit" class="btn btn-sunny btn-lg w-100">Send inquiry <i class="bi bi-send"></i></button></div>
+        </form>
+      </div>
+
+      <div class="col-lg-5 p-4 p-md-5 ps-lg-0 d-flex flex-column gap-3">
+        <div class="rounded-xl overflow-hidden flex-grow-1" style="min-height:300px;border:6px solid #fff">
+          <!-- Interactive map (OpenStreetMap, no API key needed). Change the bbox/marker to your address. -->
+          <iframe title="Map showing Magični Svijet in Sarajevo" class="w-100 h-100 border-0" style="min-height:300px" loading="lazy"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=18.37%2C43.84%2C18.44%2C43.87&amp;layer=mapnik&amp;marker=43.8563%2C18.4131"></iframe>
+        </div>
+        <div class="d-flex flex-column gap-2 fs-6">
+          <span><i class="bi bi-geo-alt-fill text-purple me-2"></i>Umihane Čuvidine 47, Sokolović Kolonija, Sarajevo</span>
+          <span><i class="bi bi-telephone-fill text-purple me-2"></i>+387 61 898 687</span>
+          <span><i class="bi bi-envelope-fill text-purple me-2"></i>magicnisvijet.info@gmail.com</span>
+          <span><i class="bi bi-clock-fill text-purple me-2"></i>Pon–Pet, 08:00-17:00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
