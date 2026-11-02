@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Magični Svijet — Kindergarten Web Application
 
 ## Project Description
@@ -48,6 +47,21 @@ The draft ERD diagram is stored in the project repository at `docs/erd.png`.
 ## External API Integration (Planned)
 - **Feature:** OpenWeatherMap API integration.
 - **Usage:** Displays real-time local weather conditions to show optimal outdoor play conditions for kindergarten activities.
-=======
-Hello Everyone
->>>>>>> origin/main
+
+## Database
+The database has 5 tables: users, children, programs, enrollments and events.
+- users 1 — N children (a parent can have many children)
+- children 1 — N enrollments (a child can apply for many programs)
+- programs 1 — N enrollments
+- programs 1 — N events (program_id can be empty = event for all groups)
+
+## Running the backend locally
+1. Start Apache and MySQL in XAMPP.
+2. In phpMyAdmin, import `database/magicni_svijet.sql`.
+3. Copy `backend/config/config.example.php` to `backend/config/config.local.php` and enter your database login.
+4. Test the DAO layer: `C:\xampp\php\php.exe backend/tests/dao_test.php`
+
+## Test accounts
+- Admin: admin@magicnisvijet.ba / Admin123!
+- Parent: parent@magicnisvijet.ba / Parent123!
+- Teacher: teacher@magicnisvijet.ba / Teacher123!

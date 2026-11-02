@@ -21,6 +21,7 @@
 # Folder structure:
 -backend: routes, services, dao, middleware, config, logs -frontend: css, js (with js/pages), views (with views/layouts), assets and index.html 
 -database: the .sql file with schema and sample data -docs: AI_LOG.md and the erd image
+-every DAO extends BaseDao and only passes its table name. extra queries for one table go in that table's DAO.
 
 # Naming:
 -php classes are PascalCase and end with their layer, like EnrollmentDao and EnrollmentService. file name is the same as the class name. 
