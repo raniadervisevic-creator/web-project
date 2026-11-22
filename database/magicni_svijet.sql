@@ -111,7 +111,7 @@ INSERT INTO enrollments (child_id, program_id, status, start_date, notes) VALUES
 (3, 3, 'approved', '2027-01-10', NULL);
 
 INSERT INTO events (program_id, title, description, event_date, location) VALUES
-(2,    'Autumn leaf hunt',       'Park walk — bring rain boots!',        '2026-11-05', 'City park'),
-(NULL, 'Pajama story night',     'Bedtime stories and warm milk.',       '2026-11-07', 'Moon room'),
-(3,    'Planetarium field trip', 'Signed permission slip needed.',       '2026-11-12', 'Planetarium'),
-(1,    'Music morning',          'Shakers, drums and singing together.', '2026-11-16', 'Story & music room');
+(2,    'Autumn leaf hunt',       'Park walk — bring rain boots!',        '2027-01-14', 'City park'),
+(NULL, 'Pajama story night',     'Bedtime stories and warm milk.',       '2027-01-16', 'Moon room'),
+(3,    'Planetarium field trip', 'Signed permission slip needed.',       '2027-01-21', 'Planetarium'),
+(1,    'Music morning',          'Shakers, drums and singing together.', '2027-01-25', 'Story & music room');

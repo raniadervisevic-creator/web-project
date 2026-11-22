@@ -1,0 +1,402 @@
+openapi: 3.0.3
+info:
+  title: Magični Svijet API
+  version: 1.0.0
+  description: |
+    REST API of the Magični Svijet kindergarten application (FlightPHP + MySQL).
+    Every endpoint returns JSON. Errors look like `{"message": "..."}`.
+    Authentication (JWT) will be added in Milestone 4.
+servers:
+  - url: http://localhost:8080
+    description: Local (PHP built-in server)
+
+tags:
+  - name: Users
+  - name: Children
+  - name: Programs
+  - name: Enrollments
+  - name: Events
+  - name: Weather
+    description: External API (OpenWeatherMap)
+
+paths:
+  # ---------------- USERS ----------------
+  /users:
+    get:
+      tags: [Users]
+      summary: List all users
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/User' } } } } }
+        '500': { $ref: '#/components/responses/ServerError' }
+    post:
+      tags: [Users]
+      summary: Create a user (the password is stored hashed)
+      requestBody:
+        required: true
+        content: { application/json: { schema: { $ref: '#/components/schemas/UserInput' } } }
+      responses:
+        '201': { description: Created, content: { application/json: { schema: { $ref: '#/components/schemas/User' } } } }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '409': { $ref: '#/components/responses/Conflict' }
+  /users/{id}:
+    parameters: [ { $ref: '#/components/parameters/Id' } ]
+    get:
+      tags: [Users]
+      summary: Get one user
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/User' } } } }
+        '404': { $ref: '#/components/responses/NotFound' }
+    put:
+      tags: [Users]
+      summary: Update a user (send only the fields to change)
+      requestBody:
+        required: true
+        content: { application/json: { schema: { $ref: '#/components/schemas/UserInput' } } }
+      responses:
+        '200': { description: Updated, content: { application/json: { schema: { $ref: '#/components/schemas/User' } } } }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+    delete:
+      tags: [Users]
+      summary: Delete a user (their children are deleted too)
+      responses:
+        '200': { $ref: '#/components/responses/Deleted' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  # ---------------- CHILDREN ----------------
+  /children:
+    get:
+      tags: [Children]
+      summary: List all children
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/Child' } } } } }
+    post:
+      tags: [Children]
+      summary: Add a child
+      requestBody:
+        required: true
+        content: { application/json: { schema: { $ref: '#/components/schemas/ChildInput' } } }
+      responses:
+        '201': { description: Created, content: { application/json: { schema: { $ref: '#/components/schemas/Child' } } } }
+        '400': { $ref: '#/components/responses/BadRequest' }
+  /children/{id}:
+    parameters: [ { $ref: '#/components/parameters/Id' } ]
+    get:
+      tags: [Children]
+      summary: Get one child
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/Child' } } } }
+        '404': { $ref: '#/components/responses/NotFound' }
+    put:
+      tags: [Children]
+      summary: Update a child
+      requestBody:
+        required: true
+        content: { application/json: { schema: { $ref: '#/components/schemas/ChildInput' } } }
+      responses:
+        '200': { description: Updated, content: { application/json: { schema: { $ref: '#/components/schemas/Child' } } } }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '404': { $ref: '#/components/responses/NotFound' }
+    delete:
+      tags: [Children]
+      summary: Delete a child (their enrollments are deleted too)
+      responses:
+        '200': { $ref: '#/components/responses/Deleted' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  # ---------------- PROGRAMS ----------------
+  /programs:
+    get:
+      tags: [Programs]
+      summary: List all programs (classes)
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/Program' } } } } }
+    post:
+      tags: [Programs]
+      summary: Create a program
+      requestBody:
+        required: true
+        content: { application/json: { schema: { $ref: '#/components/schemas/ProgramInput' } } }
+      responses:
+        '201': { description: Created, content: { application/json: { schema: { $ref: '#/components/schemas/Program' } } } }
+        '400': { $ref: '#/components/responses/BadRequest' }
+  /programs/{id}:
+    parameters: [ { $ref: '#/components/parameters/Id' } ]
+    get:
+      tags: [Programs]
+      summary: Get one program
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/Program' } } } }
+        '404': { $ref: '#/components/responses/NotFound' }
+    put:
+      tags: [Programs]
+      summary: Update a program
+      requestBody:
+        required: true
+        content: { application/json: { schema: { $ref: '#/components/schemas/ProgramInput' } } }
+      responses:
+        '200': { description: Updated, content: { application/json: { schema: { $ref: '#/components/schemas/Program' } } } }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '404': { $ref: '#/components/responses/NotFound' }
+    delete:
+      tags: [Programs]
+      summary: Delete a program (not allowed while it has enrollments)
+      responses:
+        '200': { $ref: '#/components/responses/Deleted' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+
+  # ---------------- ENROLLMENTS ----------------
+  /enrollments:
+    get:
+      tags: [Enrollments]
+      summary: List all enrollments with child and program names
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/Enrollment' } } } } }
+    post:
+      tags: [Enrollments]
+      summary: Apply for a program (status starts as pending; the child's age must fit the program)
+      requestBody:
+        required: true
+        content: { application/json: { schema: { $ref: '#/components/schemas/EnrollmentInput' } } }
+      responses:
+        '201': { description: Created, content: { application/json: { schema: { $ref: '#/components/schemas/Enrollment' } } } }
+        '400': { $ref: '#/components/responses/BadRequest' }
+  /enrollments/{id}:
+    parameters: [ { $ref: '#/components/parameters/Id' } ]
+    get:
+      tags: [Enrollments]
+      summary: Get one enrollment
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/Enrollment' } } } }
+        '404': { $ref: '#/components/responses/NotFound' }
+    put:
+      tags: [Enrollments]
+      summary: Update an enrollment, e.g. change the status to approved
+      requestBody:
+        required: true
+        content: { application/json: { schema: { $ref: '#/components/schemas/EnrollmentInput' } } }
+      responses:
+        '200': { description: Updated, content: { application/json: { schema: { $ref: '#/components/schemas/Enrollment' } } } }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '404': { $ref: '#/components/responses/NotFound' }
+    delete:
+      tags: [Enrollments]
+      summary: Delete an enrollment
+      responses:
+        '200': { $ref: '#/components/responses/Deleted' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  # ---------------- EVENTS ----------------
+  /events:
+    get:
+      tags: [Events]
+      summary: List all events with the program name
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/Event' } } } } }
+    post:
+      tags: [Events]
+      summary: Create an event (leave program_id empty for all groups)
+      requestBody:
+        required: true
+        content: { application/json: { schema: { $ref: '#/components/schemas/EventInput' } } }
+      responses:
+        '201': { description: Created, content: { application/json: { schema: { $ref: '#/components/schemas/Event' } } } }
+        '400': { $ref: '#/components/responses/BadRequest' }
+  /events/upcoming:
+    get:
+      tags: [Events]
+      summary: Events from today onwards
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/Event' } } } } }
+  /events/{id}:
+    parameters: [ { $ref: '#/components/parameters/Id' } ]
+    get:
+      tags: [Events]
+      summary: Get one event
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/Event' } } } }
+        '404': { $ref: '#/components/responses/NotFound' }
+    put:
+      tags: [Events]
+      summary: Update an event
+      requestBody:
+        required: true
+        content: { application/json: { schema: { $ref: '#/components/schemas/EventInput' } } }
+      responses:
+        '200': { description: Updated, content: { application/json: { schema: { $ref: '#/components/schemas/Event' } } } }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '404': { $ref: '#/components/responses/NotFound' }
+    delete:
+      tags: [Events]
+      summary: Delete an event
+      responses:
+        '200': { $ref: '#/components/responses/Deleted' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  # ---------------- WEATHER (external API) ----------------
+  /weather:
+    get:
+      tags: [Weather]
+      summary: Current weather in Sarajevo from OpenWeatherMap
+      description: |
+        The backend calls OpenWeatherMap with the API key from the config file and a timeout.
+        If the call fails, the failure is written to logs/error.log and a friendly 503 message is returned.
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/Weather' } } } }
+        '503':
+          description: The weather service is unavailable
+          content: { application/json: { schema: { $ref: '#/components/schemas/Message' }, example: { message: 'Our weather moon is taking a nap — please check back soon!' } } }
+
+components:
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      schema: { type: integer, example: 1 }
+
+  responses:
+    Deleted:
+      description: Deleted
+      content: { application/json: { schema: { $ref: '#/components/schemas/Message' }, example: { message: 'Child deleted.' } } }
+    BadRequest:
+      description: Invalid input
+      content: { application/json: { schema: { $ref: '#/components/schemas/Message' }, example: { message: "The field 'first_name' is required." } } }
+    NotFound:
+      description: Not found
+      content: { application/json: { schema: { $ref: '#/components/schemas/Message' }, example: { message: 'Child not found.' } } }
+    Conflict:
+      description: Conflict with existing data
+      content: { application/json: { schema: { $ref: '#/components/schemas/Message' }, example: { message: 'An account with this email already exists.' } } }
+    ServerError:
+      description: Unexpected server error (details only in logs/error.log)
+      content: { application/json: { schema: { $ref: '#/components/schemas/Message' } } }
+
+  schemas:
+    Message:
+      type: object
+      properties: { message: { type: string } }
+
+    User:
+      type: object
+      properties:
+        id: { type: integer, example: 2 }
+        first_name: { type: string, example: Ana }
+        last_name: { type: string, example: Anić }
+        email: { type: string, example: parent@magicnisvijet.ba }
+        phone: { type: string, nullable: true, example: '+387 61 000 000' }
+        role: { type: string, enum: [admin, parent, teacher] }
+        created_at: { type: string, example: '2026-11-01 10:00:00' }
+    UserInput:
+      type: object
+      required: [first_name, last_name, email, password]
+      properties:
+        first_name: { type: string, example: Lejla }
+        last_name: { type: string, example: Begić }
+        email: { type: string, format: email, example: lejla@example.com }
+        phone: { type: string, example: '+387 61 222 333' }
+        password: { type: string, minLength: 8, example: Secret123 }
+        role: { type: string, enum: [admin, parent, teacher], default: parent }
+
+    Child:
+      type: object
+      properties:
+        id: { type: integer, example: 1 }
+        parent_id: { type: integer, example: 2 }
+        first_name: { type: string, example: Lana }
+        last_name: { type: string, example: Anić }
+        date_of_birth: { type: string, format: date, example: '2022-03-14' }
+        notes: { type: string, nullable: true, example: Loves painting }
+        created_at: { type: string }
+    ChildInput:
+      type: object
+      required: [parent_id, first_name, last_name, date_of_birth]
+      properties:
+        parent_id: { type: integer, example: 2, description: Must be a user with the parent role }
+        first_name: { type: string, example: Emina }
+        last_name: { type: string, example: Anić }
+        date_of_birth: { type: string, format: date, example: '2023-05-05', description: Cannot be in the future }
+        notes: { type: string, example: Likes dinosaurs }
+
+    Program:
+      type: object
+      properties:
+        id: { type: integer, example: 2 }
+        name: { type: string, example: Preschool Explorers }
+        min_age: { type: integer, example: 3 }
+        max_age: { type: integer, example: 5 }
+        description: { type: string }
+        schedule: { type: string, example: 'Mon–Fri, 07:30–16:30' }
+        price: { type: number, example: 280 }
+        capacity: { type: integer, example: 18 }
+        teacher: { type: string }
+        image: { type: string, example: class-preschool.svg }
+    ProgramInput:
+      type: object
+      required: [name, min_age, max_age]
+      properties:
+        name: { type: string, example: Music Bees }
+        min_age: { type: integer, minimum: 0, maximum: 7, example: 2 }
+        max_age: { type: integer, minimum: 0, maximum: 7, example: 4, description: Cannot be smaller than min_age }
+        description: { type: string }
+        schedule: { type: string }
+        price: { type: number, minimum: 0, example: 200 }
+        capacity: { type: integer, minimum: 1, maximum: 100, example: 10 }
+        teacher: { type: string }
+        image: { type: string }
+
+    Enrollment:
+      type: object
+      properties:
+        id: { type: integer, example: 1 }
+        child_id: { type: integer, example: 1 }
+        program_id: { type: integer, example: 2 }
+        status: { type: string, enum: [pending, approved, active, rejected] }
+        start_date: { type: string, format: date, example: '2026-09-01' }
+        notes: { type: string, nullable: true }
+        created_at: { type: string }
+        child_name: { type: string, example: Lana Anić, description: Only in the list }
+        program_name: { type: string, example: Preschool Explorers, description: Only in the list }
+    EnrollmentInput:
+      type: object
+      required: [child_id, program_id, start_date]
+      properties:
+        child_id: { type: integer, example: 3 }
+        program_id: { type: integer, example: 3 }
+        start_date: { type: string, format: date, example: '2027-02-01' }
+        status: { type: string, enum: [pending, approved, active, rejected], default: pending }
+        notes: { type: string }
+
+    Event:
+      type: object
+      properties:
+        id: { type: integer, example: 1 }
+        program_id: { type: integer, nullable: true, example: 2 }
+        title: { type: string, example: Autumn leaf hunt }
+        description: { type: string }
+        event_date: { type: string, format: date, example: '2026-11-05' }
+        location: { type: string, example: City park }
+        program_name: { type: string, example: Preschool Explorers, description: Only in the list }
+    EventInput:
+      type: object
+      required: [title, event_date]
+      properties:
+        program_id: { type: integer, nullable: true, example: 1, description: Empty = event for all groups }
+        title: { type: string, maxLength: 150, example: Winter concert }
+        description: { type: string }
+        event_date: { type: string, format: date, example: '2026-12-20' }
+        location: { type: string, example: Story & music room }
+
+    Weather:
+      type: object
+      properties:
+        city: { type: string, example: Sarajevo }
+        temp: { type: number, example: 8 }
+        description: { type: string, example: Scattered clouds }
+        icon: { type: string, enum: [sunny, partly, rain] }
+        wind_kmh: { type: number, example: 11 }
+        humidity: { type: integer, example: 71 }
+        outdoor_ok: { type: boolean, example: true }
+        updated_at: { type: string, example: '2026-11-22T09:15:00+01:00' }

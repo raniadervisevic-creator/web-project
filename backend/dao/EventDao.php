@@ -8,6 +8,19 @@ class EventDao extends BaseDao
         parent::__construct('events');
     }
 
+    /** All events with the program name, sorted by date */
+    public function getAllWithProgram(): array
+    {
+        $stmt = $this->db->prepare(
+            "SELECT ev.*, COALESCE(p.name, 'All groups') AS program_name
+             FROM events ev
+             LEFT JOIN programs p ON p.id = ev.program_id
+             ORDER BY ev.event_date"
+        );
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
     /** Events from today onwards, with the program name ("All groups" when program_id is NULL) */
     public function getUpcoming(): array
     {

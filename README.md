@@ -65,3 +65,16 @@ The database has 5 tables: users, children, programs, enrollments and events.
 - Admin: admin@magicnisvijet.ba / Admin123!
 - Parent: parent@magicnisvijet.ba / Parent123!
 - Teacher: teacher@magicnisvijet.ba / Teacher123!
+
+## Running the API (Milestone 3)
+1. Install dependencies: `cd backend` → `composer install`
+2. Make sure `backend/config/config.local.php` exists (copy of `config.example.php`) with your database login and OpenWeatherMap API key.
+3. Start MySQL in XAMPP and import `database/magicni_svijet.sql`.
+4. Start the API: `C:\xampp\php\php.exe -S localhost:8080 -t backend backend/index.php`
+5. API documentation (Swagger): http://localhost:8080/swagger/index.html
+
+## Backend layers
+- **routes/** — FlightPHP endpoints, only handle HTTP and return JSON
+- **services/** — business logic and validation, the only layer that calls DAOs
+- **dao/** — database access with PDO prepared statements
+- **WeatherService** — calls OpenWeatherMap (GET /weather) with a timeout, error logging and a friendly fallback message

@@ -1,19 +1,10 @@
 <?php
-/**
- * Configuration TEMPLATE — safe to commit to GitHub.
- *
- * 1. Copy this file to   backend/config/config.local.php
- * 2. Fill in your real values there.
- * The real file is listed in .gitignore, so secrets never reach GitHub.
- *
- * NOTE (Windows): do NOT name the real file "config.php" — Windows treats
- * config.php and Config.php (the loader class) as the same file.
- */
+
 return [
     'app' => [
         'name'        => 'Magični Svijet API',
         'env'         => 'development',          // 'production' hides error details
-        'cors_origin' => 'http://localhost',     // where the frontend runs
+        'cors_origin' => '*',                    // who may call the API from a browser ('*' = anyone, fine for local work)
     ],
 
     'db' => [
@@ -31,7 +22,7 @@ return [
         'ttl'    => 3600,                        // seconds
     ],
 
-    // OpenWeatherMap — free key at https://openweathermap.org/api
+    
     'weather' => [
         'api_key'   => 'CHANGE_ME',
         'city'      => 'Sarajevo',

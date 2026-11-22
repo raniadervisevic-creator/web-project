@@ -1,0 +1,6 @@
+# Only needed if the backend runs under Apache (XAMPP htdocs):
+# sends every request that is not a real file to index.php (FlightPHP).
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
