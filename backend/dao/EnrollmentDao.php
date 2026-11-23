@@ -22,6 +22,14 @@ class EnrollmentDao extends BaseDao
         return $stmt->fetchAll();
     }
 
+    /** How many enrollments a program has (a program with enrollments can't be deleted) */
+    public function countByProgramId(int $programId): int
+    {
+        $stmt = $this->db->prepare('SELECT COUNT(*) FROM enrollments WHERE program_id = :program_id');
+        $stmt->execute(['program_id' => $programId]);
+        return (int) $stmt->fetchColumn();
+    }
+
     /** Enrollments of all children that belong to one parent */
     public function getByParentId(int $parentId): array
     {
